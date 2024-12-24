@@ -1,0 +1,63 @@
+# Ignore virtual environment.
+.venv
+env/
+
+# Ignore Python compiled bytecode.
+*.pyc
+__pycache__
+
+# Ignore mypy and pytest related files.
+.mypy_cache
+.pytest_cache
+
+# Ignore custom IDE folders.
+*.sublime-workspace
+*.idea*
+*.vscode
+
+# Credentials
+.env
+
+#db
+*.db
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
