@@ -1,0 +1,13 @@
+<div>
+  <h1>Categories</h1>
+
+  <ul>
+    <li *ngFor="let category of categories">{{ category.name }}</li>
+  </ul>
+
+  <div>
+    <h3>Create New Category</h3>
+    <input [(ngModel)]="newCategoryName" placeholder="Enter category name" />
+    <button (click)="createCategory()">Create</button>
+  </div>
+</div>
