@@ -25,7 +25,11 @@ export class CategoriesComponent {
   loadCategories(): void {
     this.categoryService.getCategories().subscribe(
       (response) => {
-        this.categories = response.map((category: any) => ({ ...category, newTaskName: '' }));
+        this.categories = response.map((category: any) => ({
+          ...category,
+          tasks: category.tasks || [],
+          newTaskName: ''
+        }));
       },
       (error) => {
         console.error('Error fetching categories', error);

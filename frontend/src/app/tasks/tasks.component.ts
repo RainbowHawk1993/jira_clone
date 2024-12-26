@@ -8,30 +8,17 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './tasks.component.html',
-  //styleUrls: ['./tasks.component.css'],
+  styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnChanges {
   @Input() categoryId: number | null = null;
-  tasks: any[] = [];
+  @Input() tasks: any[] = [];
   newTaskName: string = '';
 
   constructor(private taskService: TaskService) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['categoryId'] && this.categoryId) {
-      this.loadTasks();
-    }
-  }
-
-  loadTasks(): void {
-    if (this.categoryId) {
-      this.taskService.getTasksByCategory(this.categoryId).subscribe(
-        (response) => {
-          this.tasks = response;
-        },
-        (error) => {
-          console.error('Error fetching tasks:', error);
-        }
-      );
+      // todo
     }
   }
 

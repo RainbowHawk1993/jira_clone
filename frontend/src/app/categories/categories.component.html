@@ -4,7 +4,7 @@
   <div *ngFor="let category of categories">
     <h2>{{ category.name }}</h2>
 
-    <app-tasks [categoryId]="category.id"></app-tasks>
+    <app-tasks [categoryId]="category.id" [tasks]="category.tasks"></app-tasks>
   </div>
 
   <div>

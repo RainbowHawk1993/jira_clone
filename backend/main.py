@@ -38,8 +38,16 @@ def read_root():
 
 @app.get("/api/categories")
 async def get_categories():
-    query = "SELECT * FROM categories"
-    return await database.fetch_all(query)
+    query = """
+    SELECT categories.id, categories.name,
+           json_group_array(json_object('id', tasks.id, 'title', tasks.title)) as tasks
+    FROM categories
+    LEFT JOIN tasks ON tasks.category_id = categories.id
+    GROUP BY categories.id
+    """
+    categories = await database.fetch_all(query)
+    return [{"id": cat["id"], "name": cat["name"], "tasks": json.loads(cat["tasks"])} for cat in categories]
+
 
 @app.post("/api/categories")
 async def create_category(category: dict = Body(...)):
