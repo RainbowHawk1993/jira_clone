@@ -1,0 +1,62 @@
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.category-column {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.category-column h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.create-category-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.category-input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  width: 70%;
+  max-width: 300px;
+}
+
+.create-category-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-category-button:hover {
+  background-color: #0056b3;
+}

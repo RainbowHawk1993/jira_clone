@@ -1,15 +1,31 @@
 <div>
   <h1>Categories</h1>
 
-  <div *ngFor="let category of categories">
-    <h2>{{ category.name }}</h2>
+  <div class="categories-container">
+    <div *ngFor="let category of categories" class="category-column">
+      <h2>{{ category.name }}</h2>
 
-    <app-tasks [categoryId]="category.id" [tasks]="category.tasks"></app-tasks>
+      <app-tasks
+        [categoryId]="category.id"
+        [tasks]="category.tasks"
+        (taskCreated)="loadCategories()">
+      </app-tasks>
+    </div>
   </div>
 
-  <div>
+  <div class="create-category-container">
     <h3>Create New Category</h3>
-    <input [(ngModel)]="newCategoryName" placeholder="Enter category name" />
-    <button (click)="createCategory()">Create</button>
+    <div class="input-group">
+      <input
+        [(ngModel)]="newCategoryName"
+        class="category-input"
+        placeholder="Enter category name"
+      />
+      <button
+        class="create-category-button"
+        (click)="createCategory()">
+        Create
+      </button>
+    </div>
   </div>
 </div>
