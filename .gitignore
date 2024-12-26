@@ -28,7 +28,7 @@ __pycache__
 /bazel-out
 
 # Node
-/node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -50,7 +50,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.angular/
 .sass-cache/
 /connect.lock
 /coverage

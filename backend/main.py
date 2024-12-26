@@ -27,6 +27,10 @@ app.add_middleware(
 class Category(BaseModel):
     name: str
 
+class Task(BaseModel):
+    title: str
+    category_id: int
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to FastAPI with Angular!"}
@@ -44,3 +48,30 @@ async def create_category(category: dict = Body(...)):
     query = "INSERT INTO categories(name) VALUES (:name)"
     await database.execute(query, {"name": name})
     return {"message": "Category created", "name": name}
+
+@app.post("/api/tasks")
+async def create_task(task: Task):
+    category_query = "SELECT * FROM categories WHERE id = :category_id"
+    category = await database.fetch_one(category_query, {"category_id": task.category_id})
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    query = "INSERT INTO tasks(title, category_id) VALUES (:title, :category_id)"
+    await database.execute(query, {"title": task.title, "category_id": task.category_id})
+    return {"message": "Task created", "title": task.title, "category_id": task.category_id}
+
+@app.put("/api/tasks/{task_id}/change-category")
+async def change_task_category(task_id: int, new_category_id: int = Body(...)):
+    task_query = "SELECT * FROM tasks WHERE id = :task_id"
+    task = await database.fetch_one(task_query, {"task_id": task_id})
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    category_query = "SELECT * FROM categories WHERE id = :category_id"
+    category = await database.fetch_one(category_query, {"category_id": new_category_id})
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    update_query = "UPDATE tasks SET category_id = :new_category_id WHERE id = :task_id"
+    await database.execute(update_query, {"new_category_id": new_category_id, "task_id": task_id})
+    return {"message": "Task category updated", "task_id": task_id, "new_category_id": new_category_id}
