@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryService } from '../category.service';
 import { FormsModule } from '@angular/forms';
+import { TasksComponent } from '../tasks/tasks.component';
 
 @Component({
   selector: 'app-categories',
-  standalone: true,  // Mark the component as standalone
-  imports: [CommonModule, FormsModule],  // Import necessary modules
+  standalone: true,
+  imports: [CommonModule, FormsModule, TasksComponent],
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
@@ -24,7 +25,7 @@ export class CategoriesComponent {
   loadCategories(): void {
     this.categoryService.getCategories().subscribe(
       (response) => {
-        this.categories = response;
+        this.categories = response.map((category: any) => ({ ...category, newTaskName: '' }));
       },
       (error) => {
         console.error('Error fetching categories', error);

@@ -1,9 +1,11 @@
 <div>
   <h1>Categories</h1>
 
-  <ul>
-    <li *ngFor="let category of categories">{{ category.name }}</li>
-  </ul>
+  <div *ngFor="let category of categories">
+    <h2>{{ category.name }}</h2>
+
+    <app-tasks [categoryId]="category.id"></app-tasks>
+  </div>
 
   <div>
     <h3>Create New Category</h3>

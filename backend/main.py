@@ -2,6 +2,7 @@ from fastapi import FastAPI, Form, Body
 from pydantic import BaseModel
 from databases import Database
 from fastapi.middleware.cors import CORSMiddleware
+import json
 
 app = FastAPI()
 
@@ -48,6 +49,14 @@ async def create_category(category: dict = Body(...)):
     query = "INSERT INTO categories(name) VALUES (:name)"
     await database.execute(query, {"name": name})
     return {"message": "Category created", "name": name}
+
+@app.get("/api/tasks")
+async def get_tasks_by_category(category_id: int):
+    query = """
+    SELECT * FROM tasks WHERE category_id = :category_id
+    """
+    tasks = await database.fetch_all(query, {"category_id": category_id})
+    return [{"id": task["id"], "title": task["title"], "category_id": task["category_id"]} for task in tasks]
 
 @app.post("/api/tasks")
 async def create_task(task: Task):
