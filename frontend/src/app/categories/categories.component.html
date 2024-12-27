@@ -1,14 +1,15 @@
 <div>
   <h1>Categories</h1>
 
-  <div class="categories-container">
+  <div class="categories-container" cdkDropListGroup>
     <div *ngFor="let category of categories" class="category-column">
       <h2>{{ category.name }}</h2>
 
       <app-tasks
         [categoryId]="category.id"
         [tasks]="category.tasks"
-        (taskCreated)="loadCategories()">
+        (taskCreated)="loadCategories()"
+        (taskMoved)="onTaskMoved($event)">
       </app-tasks>
     </div>
   </div>
@@ -23,8 +24,7 @@
       />
       <button
         class="create-category-button"
-        (click)="createCategory()">
-        Create
+        (click)="createCategory()">Create
       </button>
     </div>
   </div>

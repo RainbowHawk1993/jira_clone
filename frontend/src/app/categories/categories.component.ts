@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CategoryService } from './category.service';
 import { FormsModule } from '@angular/forms';
 import { TasksComponent } from '../tasks/tasks.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, FormsModule, TasksComponent],
+  imports: [CommonModule, FormsModule, TasksComponent, DragDropModule],
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
@@ -50,5 +51,10 @@ export class CategoriesComponent {
         }
       );
     }
+  }
+
+  onTaskMoved(event: { taskId: number; newCategoryId: number }): void {
+    console.log('Task moved:', event);
+    this.loadCategories();
   }
 }

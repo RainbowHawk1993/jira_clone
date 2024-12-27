@@ -1,7 +1,17 @@
-<div class="tasks-container">
-  <div *ngFor="let task of tasks" class="task-card">
-    <h3>{{ task.title }}</h3>
-  </div>
+<div
+  class="tasks-container"
+  cdkDropList
+  [cdkDropListData]="{ id: categoryId, tasks: tasks }"
+  (cdkDropListDropped)="onTaskDropped($event)"
+>
+  <div
+  *ngFor="let task of tasks"
+  class="task-card"
+  cdkDrag
+  [cdkDragData]="task"
+  >
+  <h3>{{ task.title }}</h3>
+</div>
 
   <div class="task-create-form">
     <input [(ngModel)]="newTaskName" placeholder="Enter task name" />

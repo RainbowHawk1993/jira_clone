@@ -12,6 +12,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.task-card.cdk-drag-preview {
+  border: 2px dashed #007bff;
+  background-color: #e9ecef;
+}
+
+.task-card.cdk-drag-placeholder {
+  background: #f8f9fa;
+  border: 1px dashed #6c757d;
+}
+
 .task-create-form input {
   flex: 1;
   padding: 8px;
